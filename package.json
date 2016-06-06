@@ -4,7 +4,12 @@
   "description": "An :active replacement that doesn't delay on mobile",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "mkdir -p lib",
+    "build": "time browserify --standalone=quicktap src/index.js | uglifyjs --screw-ie8 -c drop_console=true --comments > lib/quicktap.js",
+    "build:watch": "watch 'npm run build' --interval=0.5 src",
+
+    "prebuild-debug": "mkdir -p lib",
+    "build-debug": "time browserify --standalone=quicktap src/index.js -o lib/quicktap.js"
   },
   "repository": {
     "type": "git",
@@ -13,11 +18,17 @@
   "keywords": [
     "quicktap",
     "active",
+	"instant",
     "mobile",
     "touch",
     "tap",
     "respond",
-    "response"
+    "response",
+	"click",
+	"event",
+	"performance",
+	"perf",
+	"touchstart"
   ],
   "author": "Marco Scannadinari <m@scannadinari.co.uk>",
   "license": "MIT",
@@ -26,8 +37,8 @@
   },
   "homepage": "https://github.com/marcoms/quicktap#readme",
   "devDependencies": {
-    "babel-preset-es2015": "^6.9.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2"
+    "browserify": "^13.0.1",
+    "uglify-js": "^2.6.2",
+    "watch": "^0.18.0"
   }
 }

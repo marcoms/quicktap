@@ -4,7 +4,7 @@
 
 ![Demo](demo.gif)
 
-`quicktap` in action
+> `quicktap` in action (see [demo](https://marcoms.github.io/quicktap))
 
 ## Background
 

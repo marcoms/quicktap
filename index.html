@@ -87,7 +87,7 @@
 			const $$ = document.querySelectorAll.bind(document);
 
 			const qtDemos = $$(".qt");
-			for (const qtDemo of qtDemos) {
+			for (let qtDemo of qtDemos) {
 				quicktap.apply(qtDemo);
 			}
 		</script>

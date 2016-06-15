@@ -33,7 +33,7 @@ quicktap.apply(targetElement);
 Now, instead of using the `:active` selector in your CSS, switch to using `.active` (or what you have set `quicktap.tag` to).
 
 ```css
-.company-button.active {
+.button.active {
 	background: black;
 	color: white;
 }
@@ -48,7 +48,7 @@ quicktap.tag = "radioactive";
 ```
 
 ```css
-.company-button.radioactive {
+.button.radioactive {
 	background: hotpink;
 	color: white;
 }

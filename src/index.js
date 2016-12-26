@@ -29,7 +29,7 @@ try {
 // (snippet ends)
 
 var quicktap = {
-	tag: 'active',
+	class: 'active',
 
 	apply: function apply(el) {
 		if (el === undefined) {
@@ -61,11 +61,11 @@ var quicktap = {
 };
 
 function activate(evt) {
-	evt.currentTarget.classList.add(quicktap.tag);
+	evt.currentTarget.classList.add(quicktap.class);
 }
 
 function deactivate(evt) {
-	evt.currentTarget.classList.remove(quicktap.tag);
+	evt.currentTarget.classList.remove(quicktap.class);
 }
 
 module.exports = quicktap;

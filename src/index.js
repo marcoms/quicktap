@@ -6,6 +6,10 @@ quicktap library, MIT licensed
 
 'use strict';
 
+if (typeof window === 'undefined') {
+	throw new Error('quicktap can only be used in the browser');
+}
+
 const touchEnabled = 'ontouchstart' in window;
 
 /*

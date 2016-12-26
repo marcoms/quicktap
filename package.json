@@ -1,6 +1,6 @@
 {
   "name": "quicktap",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An :active replacement that doesn't delay on mobile",
   "main": "src/index.js",
   "scripts": {

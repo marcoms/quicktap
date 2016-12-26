@@ -36,14 +36,26 @@ var quicktap = {
 			throw Error('element parameter is required');
 		}
 
-		el.addEventListener('mousedown', activate, supportsPassive ? { passive: true } : false);
-		el.addEventListener('mouseup', deactivate, supportsPassive ? { passive: true } : false);
-		el.addEventListener('mouseleave', deactivate, supportsPassive ? { passive: true } : false);
+		if (supportsPassive) {
+			el.addEventListener('mousedown', activate, {passive: true});
+			el.addEventListener('mouseup', deactivate, {passive: true});
+			el.addEventListener('mouseleave', deactivate, {passive: true});
 
-		if (isTouch) {
-			el.addEventListener('touchstart', activate, supportsPassive ? { passive: true } : false);
-			el.addEventListener('touchcancel', deactivate, supportsPassive ? { passive: true } : false);
-			el.addEventListener('touchend', deactivate, supportsPassive ? { passive: true } : false);
+			if (isTouch) {
+				el.addEventListener('touchstart', activate, {passive: true});
+				el.addEventListener('touchcancel', deactivate, {passive: true});
+				el.addEventListener('touchend', deactivate,  {passive: true});
+			}
+		} else {
+			el.addEventListener('mousedown', activate, false);
+			el.addEventListener('mouseup', deactivate, false);
+			el.addEventListener('mouseleave', deactivate, false);
+
+			if (isTouch) {
+				el.addEventListener('touchstart', activate, false);
+				el.addEventListener('touchcancel', deactivate, false);
+				el.addEventListener('touchend', deactivate, false);
+			}
 		}
 	},
 };

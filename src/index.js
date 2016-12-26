@@ -4,9 +4,9 @@
 quicktap library, MIT licensed
 */
 
-"use strict";
+'use strict';
 
-var isTouch = "ontouchstart" in window;
+var isTouch = 'ontouchstart' in window;
 
 /*
 @preserve
@@ -29,21 +29,21 @@ try {
 // (snippet ends)
 
 var quicktap = {
-	tag: "active",
+	tag: 'active',
 
 	apply: function apply(el) {
 		if (el === undefined) {
-			throw Error("element parameter is required");
+			throw Error('element parameter is required');
 		}
 
-		el.addEventListener("mousedown", activate, supportsPassive ? { passive: true } : false);
-		el.addEventListener("mouseup", deactivate, supportsPassive ? { passive: true } : false);
-		el.addEventListener("mouseleave", deactivate, supportsPassive ? { passive: true } : false);
+		el.addEventListener('mousedown', activate, supportsPassive ? { passive: true } : false);
+		el.addEventListener('mouseup', deactivate, supportsPassive ? { passive: true } : false);
+		el.addEventListener('mouseleave', deactivate, supportsPassive ? { passive: true } : false);
 
 		if (isTouch) {
-			el.addEventListener("touchstart", activate, supportsPassive ? { passive: true } : false);
-			el.addEventListener("touchcancel", deactivate, supportsPassive ? { passive: true } : false);
-			el.addEventListener("touchend", deactivate, supportsPassive ? { passive: true } : false);
+			el.addEventListener('touchstart', activate, supportsPassive ? { passive: true } : false);
+			el.addEventListener('touchcancel', deactivate, supportsPassive ? { passive: true } : false);
+			el.addEventListener('touchend', deactivate, supportsPassive ? { passive: true } : false);
 		}
 	},
 };

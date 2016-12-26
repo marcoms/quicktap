@@ -5,11 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "prebuild": "mkdir -p lib",
-    "build": "time browserify --standalone=quicktap src/index.js | uglifyjs --screw-ie8 -c drop_console=true --comments > lib/quicktap.js",
-    "build:watch": "watch 'npm run build' --interval=0.5 src",
+    "build": "browserify --standalone=quicktap src/index.js | uglifyjs -c drop_console=true --comments > lib/quicktap.js",
 
     "prebuild-debug": "mkdir -p lib",
-    "build-debug": "time browserify --standalone=quicktap src/index.js -o lib/quicktap.js"
+    "build-debug": "browserify --standalone=quicktap src/index.js -o lib/quicktap.js"
   },
   "repository": {
     "type": "git",

@@ -4,11 +4,11 @@
   "description": "An :active replacement that doesn't delay on mobile",
   "main": "src/index.js",
   "scripts": {
-    "prebuild": "mkdir -p lib",
-    "build": "browserify --standalone=quicktap src/index.js | uglifyjs -c drop_console=true --comments > lib/quicktap.js",
+    "prebuild": "rm -rf dirst; mkdir dist",
+    "build": "browserify --standalone=quicktap src/index.js | uglifyjs --comments > dist/quicktap.js",
 
-    "prebuild-debug": "mkdir -p lib",
-    "build-debug": "browserify --standalone=quicktap src/index.js -o lib/quicktap.js"
+    "prebuild-debug": "rm -rf dist; mkdir dist",
+    "build-debug": "browserify --standalone=quicktap src/index.js -o dist/quicktap.js"
   },
   "repository": {
     "type": "git",

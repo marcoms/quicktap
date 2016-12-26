@@ -3,13 +3,6 @@
   "version": "0.1.0",
   "description": "An :active replacement that doesn't delay on mobile",
   "main": "src/index.js",
-  "scripts": {
-    "prebuild": "rm -rf dirst; mkdir dist",
-    "build": "browserify --standalone=quicktap src/index.js | uglifyjs --comments > dist/quicktap.js",
-
-    "prebuild-debug": "rm -rf dist; mkdir dist",
-    "build-debug": "browserify --standalone=quicktap src/index.js -o dist/quicktap.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcoms/quicktap.git"
@@ -17,17 +10,17 @@
   "keywords": [
     "quicktap",
     "active",
-	"instant",
+    "instant",
     "mobile",
     "touch",
     "tap",
     "respond",
     "response",
-	"click",
-	"event",
-	"performance",
-	"perf",
-	"touchstart"
+    "click",
+    "event",
+    "performance",
+    "perf",
+    "touchstart"
   ],
   "author": "Marco Scannadinari <m@scannadinari.co.uk>",
   "license": "MIT",
@@ -36,8 +29,6 @@
   },
   "homepage": "https://github.com/marcoms/quicktap#readme",
   "devDependencies": {
-    "browserify": "^13.0.1",
-    "uglify-js": "^2.6.2",
-    "watch": "^0.18.0"
+    "webpack": "2.2.0-rc.2"
   }
 }

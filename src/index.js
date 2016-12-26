@@ -6,7 +6,7 @@ quicktap library, MIT licensed
 
 'use strict';
 
-var isTouch = 'ontouchstart' in window;
+const touchEnabled = 'ontouchstart' in window;
 
 /*
 @preserve
@@ -17,9 +17,9 @@ This snippet is derived from the Modernizr library
 (snippet begins)
 */
 
-var supportsPassive = false;
+const supportsPassive = false;
 try {
-	var opts = Object.defineProperty({}, 'passive', {
+	const opts = Object.defineProperty({}, 'passive', {
 		get: function() { supportsPassive = true; }
 	});
 
@@ -28,7 +28,7 @@ try {
 
 // (snippet ends)
 
-var quicktap = {
+const quicktap = {
 	class: 'active',
 
 	apply: function apply(el) {

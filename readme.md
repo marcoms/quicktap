@@ -30,7 +30,7 @@ Apply using `quicktap.apply`.
 quicktap.apply(targetElement);
 ```
 
-Now, instead of using the `:active` selector in your CSS, switch to using `.active` (or what you have set `quicktap.tag` to).
+Now, instead of using the `:active` selector in your CSS, switch to using `.active` (or what you have set `quicktap.class` to).
 
 ```css
 .button.active {
@@ -41,10 +41,10 @@ Now, instead of using the `:active` selector in your CSS, switch to using `.acti
 
 ### Using a different class name
 
-You may set `quicktap.tag` to a string different to the default value of `"active"`, perhaps to prevent clashes with your current codebase. After you have done so, you may use this tag in your CSS.
+You may set `quicktap.class` to a string different to the default value of `"active"`, perhaps to prevent clashes with your current codebase. After you have done so, you may use this class name in your CSS.
 
 ```js
-quicktap.tag = "radioactive";
+quicktap.class = "radioactive";
 ```
 
 ```css
@@ -56,7 +56,7 @@ quicktap.tag = "radioactive";
 
 ## API
 
-### `quicktap.tag`
+### `quicktap.class`
 
 Default: `"active"`
 

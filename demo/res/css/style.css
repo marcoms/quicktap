@@ -9,6 +9,21 @@ body {
     font-family: sans-serif;
 }
 
+.demo-sections {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 640px) {
+    .demo-sections {
+        flex-direction: row;
+    }
+
+    .no-qt-section {
+        padding-left: 64px;
+    }
+}
+
 .demo {
     display: inline-block;
 

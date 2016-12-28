@@ -1,10 +1,6 @@
-/*
-@preserve
-
-quicktap library, MIT licensed
-*/
-
 `use strict`;
+
+// @preserve - quicktap by Marco Scannadinari, MIT licensed
 
 if (typeof window === `undefined`) {
 	throw new Error(`quicktap can only be used in the browser`);
@@ -20,30 +16,19 @@ function deactivate(evt) {
 
 const touchEnabled = `ontouchstart` in window;
 
-/*
-@preserve
-
-This snippet is derived from the Modernizr library
-(https://github.com/Modernizr/Modernizr), licensed as MIT.
-
-(snippet begins)
-*/
-
 let supportsPassive = false;
 try {
 	const opts = Object.defineProperty({}, `passive`, {
-		get: function() { supportsPassive = true; }
+		get() { supportsPassive = true; }
 	});
 
 	window.addEventListener(`test`, null, opts);
-} catch (e) {}
-
-// (snippet ends)
+} catch (err) {}
 
 const quicktap = {
 	class: `active`,
 
-	apply: function apply(el) {
+	apply(el) {
 		if (el === undefined) {
 			throw Error(`element parameter is required`);
 		}

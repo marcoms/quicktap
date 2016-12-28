@@ -2,7 +2,7 @@
 
 `quicktap` is an :active replacement that doesn't delay on mobile
 
-![Demo](demo.gif)
+![Demo](demo/res/img/demo.gif)
 
 > `quicktap` in action (see [demo](https://marcoms.github.io/quicktap) on a mobile device or using mobile emulation in Chrome DevTools)
 

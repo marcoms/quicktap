@@ -45,7 +45,7 @@ const quicktap = {
 			el.addEventListener('mouseup', deactivate, {passive: true});
 			el.addEventListener('mouseleave', deactivate, {passive: true});
 
-			if (isTouch) {
+			if (touchEnabled) {
 				el.addEventListener('touchstart', activate, {passive: true});
 				el.addEventListener('touchcancel', deactivate, {passive: true});
 				el.addEventListener('touchend', deactivate,  {passive: true});
@@ -55,7 +55,7 @@ const quicktap = {
 			el.addEventListener('mouseup', deactivate, false);
 			el.addEventListener('mouseleave', deactivate, false);
 
-			if (isTouch) {
+			if (touchEnabled) {
 				el.addEventListener('touchstart', activate, false);
 				el.addEventListener('touchcancel', deactivate, false);
 				el.addEventListener('touchend', deactivate, false);

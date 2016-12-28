@@ -10,6 +10,14 @@ if (typeof window === 'undefined') {
 	throw new Error('quicktap can only be used in the browser');
 }
 
+function activate(evt) {
+	evt.currentTarget.classList.add(quicktap.class);
+}
+
+function deactivate(evt) {
+	evt.currentTarget.classList.remove(quicktap.class);
+}
+
 const touchEnabled = 'ontouchstart' in window;
 
 /*
@@ -64,12 +72,4 @@ const quicktap = {
 	},
 };
 
-function activate(evt) {
-	evt.currentTarget.classList.add(quicktap.class);
-}
-
-function deactivate(evt) {
-	evt.currentTarget.classList.remove(quicktap.class);
-}
-
-module.exports = quicktap;
+export default quicktap;

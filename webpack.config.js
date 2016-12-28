@@ -7,6 +7,8 @@ module.exports = {
     output: {
         filename: `index.js`,
         path: `./dist`,
+        library: `quicktap`,
+        libraryTarget: `umd`,
     },
 
     plugins: [

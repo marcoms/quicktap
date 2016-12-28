@@ -11,6 +11,22 @@ module.exports = {
         libraryTarget: `umd`,
     },
 
+    module: {
+        rules: [
+            {
+                test: /\.js/,
+                use: [
+                    {
+                        loader: `babel-loader`,
+                        options: {
+                            presets: [`es2015`],
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
             compress: {

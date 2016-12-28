@@ -5,61 +5,7 @@
 		<title>quicktap demo</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<style>
-			body {
-				margin: 0;
-				padding: 32px;
-
-				font-family: sans-serif;
-			}
-
-			.demo {
-				display: inline-block;
-
-				cursor: pointer;
-				padding: 16px 32px;
-
-				/* disable text selection on tappable areas */
-				-webkit-user-select: none;
-				-moz-user-select: none;
-				-o-user-select: none;
-
-				/* remove blue highlight */
-				-webkit-tap-highlight-color: transparent;
-			}
-
-			.demo.active, .non-qt:active {
-				background: #eee;
-			}
-
-			.demo-material {
-				border-radius: 4px;
-
-				/* these look about right.. */;
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-
-				/* material blue 500 */
-				background: #2196F3;
-
-				color: #fff;
-
-				transition-property: transform, background;
-				transition-duration: 180ms;
-				transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-
-				will-change: transform, background;
-			}
-
-			.demo-material.active, .non-qt.demo-material:active {
-				/* material blue 300 */
-				background: #64B5F6;
-			}
-
-			.demo-material.active, .non-qt.demo-material:active {
-				/* material "raised" effect mostly for show */
-				transform: scale(1.1);
-			}
-		</style>
+		<link rel="stylesheet" href="/res/css/style.css">
 	</head>
 
 	<body>
@@ -68,14 +14,32 @@
 		<p><a href="https://github.com/marcoms/quicktap">GitHub project</a></p>
 
 		<h2>Quicktap enabled</h2>
+
+		<h3>Regular example</h3>
+
 		<div class="demo qt">Please tap me</div>
-		<p><strong>Material example</strong></p>
+
+		<h3>Animated example</h3>
+
+		<div class="demo demo-animated qt">Please tap me</div>
+
+		<h3>Material example</h3>
+
 		<div class="demo demo-material qt">Please tap me</div>
 
 		<h2>No quicktap</h2>
-		<div class="demo non-qt">Please tap me</div>
-		<p><strong>Material example</strong></p>
-		<div class="demo demo-material non-qt">Please tap me</div>
+
+		<h3>Regular example</h3>
+
+		<div class="demo">Please tap me</div>
+
+		<h3>Animated example</h3>
+
+		<div class="demo demo-animated">Please tap me</div>
+
+		<h3>Material example</h3>
+
+		<div class="demo demo-material">Please tap me</div>
 
 		<script src="res/js/main.js"></script>
 	</body>

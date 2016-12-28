@@ -22,38 +22,55 @@ try {
 		get() { supportsPassive = true; }
 	});
 
-	window.addEventListener(`test`, null, opts);
+	window.addEventListener(`x`, null, opts);
 } catch (err) {}
 
 const quicktap = {
 	class: `active`,
 
-	apply(el) {
-		if (el === undefined) {
-			throw Error(`element parameter is required`);
+	apply(elOrEls) {
+		let els = [];
+
+		if (elOrEls instanceof Node) {
+			els.push(elOrEls);
+		} else if (typeof elOrEls === 'string') {
+			const matchingEls = document.querySelectorAll(elOrEls);
+			if (matchingEls !== null) {
+				els = matchingEls;
+			}
+		} else if (elOrEls instanceof NodeList) {
+			els = Array.from(elOrEls);
+		} else if (elOrEls instanceof Array) {
+			els = elOrEls;
 		}
 
-		if (supportsPassive) {
-			el.addEventListener(`mousedown`, activate, {passive: true});
-			el.addEventListener(`mouseup`, deactivate, {passive: true});
-			el.addEventListener(`mouseleave`, deactivate, {passive: true});
+		for (const el of els) {
+			if (supportsPassive) {
+				const opts = {passive: true};
 
-			if (touchEnabled) {
-				el.addEventListener(`touchstart`, activate, {passive: true});
-				el.addEventListener(`touchcancel`, deactivate, {passive: true});
-				el.addEventListener(`touchend`, deactivate,  {passive: true});
-			}
-		} else {
-			el.addEventListener(`mousedown`, activate, false);
-			el.addEventListener(`mouseup`, deactivate, false);
-			el.addEventListener(`mouseleave`, deactivate, false);
+				el.addEventListener(`mousedown`, activate, opts);
+				el.addEventListener(`mouseup`, deactivate, opts);
+				el.addEventListener(`mouseleave`, deactivate, opts);
 
-			if (touchEnabled) {
-				el.addEventListener(`touchstart`, activate, false);
-				el.addEventListener(`touchcancel`, deactivate, false);
-				el.addEventListener(`touchend`, deactivate, false);
+				if (touchEnabled) {
+					el.addEventListener(`touchstart`, activate, opts);
+					el.addEventListener(`touchcancel`, deactivate, opts);
+					el.addEventListener(`touchend`, deactivate,  opts);
+				}
+			} else {
+				el.addEventListener(`mousedown`, activate, false);
+				el.addEventListener(`mouseup`, deactivate, false);
+				el.addEventListener(`mouseleave`, deactivate, false);
+
+				if (touchEnabled) {
+					el.addEventListener(`touchstart`, activate, false);
+					el.addEventListener(`touchcancel`, deactivate, false);
+					el.addEventListener(`touchend`, deactivate, false);
+				}
 			}
 		}
+
+		return els;
 	},
 };
 

@@ -43,6 +43,8 @@ const quicktap = {
 			els = Array.from(elOrEls);
 		} else if (elOrEls instanceof Array) {
 			els = elOrEls;
+		} else {
+			throw new Error(`Must pass HTMLElement, string, NodeList, or Array`);
 		}
 
 		for (const el of els) {

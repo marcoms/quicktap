@@ -18,38 +18,22 @@ It is important to know that `quicktap` does not intefere with any `click` event
 
 ## Using `quicktap`
 
-Obtain a reference to the element you want to apply `quicktap` enhancements to.
+Apply quicktap enhancements to your chosen element.
 
 ```js
-const targetElement = document.querySelector("#target-element");
+quicktap.apply(`#target-element`);
 ```
 
-Apply using `quicktap.apply`.
-
-```js
-quicktap.apply(targetElement);
-```
-
-Now, instead of using the `:active` selector in your CSS, switch to using `.active` (or what you have set `quicktap.class` to).
+Now, the element will have the `.active` class (or a unique one if you have changed `quicktap.class` yourself) when it is pressed.
 
 ```css
-.button.active {
-	background: black;
-	color: white;
+#target-element {
+	background: white;
+	color: blue;
 }
-```
 
-### Using a different class name
-
-You may set `quicktap.class` to a string different to the default value of `"active"`, perhaps to prevent clashes with your current codebase. After you have done so, you may use this class name in your CSS.
-
-```js
-quicktap.class = "radioactive";
-```
-
-```css
-.button.radioactive {
-	background: hotpink;
+#target-element.active {
+	background: blue;
 	color: white;
 }
 ```
@@ -62,11 +46,58 @@ Default: `"active"`
 
 String to use as the class name for elements which have been activated by a touch or mouse event.
 
-### `quicktap.apply(el)`
+#### Example
 
-Applies `quicktap` enhancements to `el`.
+##### JS
 
-More specifically, this adds event listeners to `el` that await mouse and touch events, which causes an element to be activated or deactivated.
+```js
+quicktap.class = "radioactive";
+```
+
+##### CSS
+
+```css
+.button.radioactive {
+	background: hotpink;
+	color: white;
+}
+```
+
+### `quicktap.apply(elOrEls)`
+
+Returns all of the elements that have been successfully modified.
+
+`elOrEls` may be one of `Element`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array`.
+
+Applies `quicktap` enhancements to `elOrEls`.
+
+#### Examples
+
+```js
+// single element
+
+const elementReference = document.querySelector(`#target-element`);
+quicktap.apply(elementReference);
+
+// selector
+
+quicktap.apply(`.selector`);
+
+// NodeList
+
+const elementReferences = document.querySelectorAll(`.selector`);
+quicktap.apply(elementReferences);
+
+// array
+
+const elementArray = [
+	document.querySelector(`#a`),
+	document.querySelector(`#b`),
+	document.querySelector(`#c`),
+];
+
+quicktap.apply(elementArray);
+```
 
 ## License
 

@@ -37,7 +37,7 @@ const quicktap = {
 		} else if (typeof elOrEls === `string`) {
 			const matchingEls = document.querySelectorAll(elOrEls);
 			if (matchingEls !== null) {
-				els = matchingEls;
+				els = Array.from(matchingEls);
 			}
 		} else if (elOrEls instanceof NodeList) {
 			els = Array.from(elOrEls);

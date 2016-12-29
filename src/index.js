@@ -28,6 +28,11 @@ try {
 
 const quicktap = {
 	class: `active`,
+	version: {
+		major: VERSION_MAJOR,
+		minor: VERSION_MINOR,
+		patch: VERSION_PATCH,
+	},
 
 	apply(elOrEls) {
 		let els = [];

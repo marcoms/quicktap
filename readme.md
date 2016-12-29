@@ -1,10 +1,8 @@
 # `quicktap`
 
-`quicktap` is an :active replacement that doesn't delay on mobile
+`quicktap` implements a class-based replacement for the `:active` pseudo-class that doesn't delay on mobile. Elements using `quicktap` should manifest a noticeable improvement to latency.
 
-![Demo](demo/res/img/demo.gif)
-
-> `quicktap` in action (see [demo](https://marcoms.github.io/quicktap/demo) on a mobile device or using mobile emulation in Chrome DevTools)
+View the [demo page](https://marcoms.github.io/quicktap/demo) on a mobile device, or watch a [video](https://marcoms.github.io/quicktap/demo/res/video/demo.webm) of the differences.
 
 ## Background
 

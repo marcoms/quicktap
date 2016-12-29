@@ -6,13 +6,13 @@ View the [demo page](https://marcoms.github.io/quicktap/demo) on a mobile device
 
 ## Background
 
-From the above GIF, you may notice how the bottom buttoms take longer to respond to presses on the mobile device than the top buttons. Unfortunately this still is the case in Chrome and Firefox today.
+You may notice from the demo page how the regular take longer to respond to presses on the mobile device than the quicktap buttons.
 
-At this time, both Chrome and Firefox have a small delay between the `touchstart` event and actually adding the `:active` pseudoclass to the element. It is assumed that this is the case to prevent panning or scrolling from causing the `:active` selector to match when the user didn't intend to click on an element (yet why is this not also the case when a user drags across text to select it on desktop?). These are valid concerns and those who value them shoud stick with their current system, but for those who value instant user feedback more, this library could be used.
+At this time, both Chrome and Firefox have a small delay between the `touchstart` event and actually adding the `:active` pseudoclass to the element. It is assumed that this is the case to prevent panning or scrolling from causing the `:active` selector to match and cause visual feedback. Unfortunately this sacrifices latency even when the user wants to tap on an element.
 
-`quicktap` gets around this by listening for `touchstart` and `touchend` events (among others), and adding and removing a CSS class on an element accordingly. With these changes, it noticeably improves the user experience, since there is almost instant feedback from a user interaction. You can see this in the top buttons in the GIF.
+`quicktap` gets around this by listening for `touchstart` and `touchend` events (among others), and adding and removing a CSS class on an element accordingly. With these changes, it noticeably improves the user experience, since there is almost instant feedback from a user interaction.
 
-It is important to know that `quicktap` does not intefere with any `click` events and so should not affect the browser's behaviour. Also, this is not dealing with the infamous '300ms click delay' which is a separate and solved issue in most browsers and by the [FastClick](https://github.com/ftlabs/fastclick) library.
+It is important to know that `quicktap` does not intefere with any `click` events and so should not affect the browser's behaviour.
 
 ## Using `quicktap`
 

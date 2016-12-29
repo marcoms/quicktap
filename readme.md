@@ -4,7 +4,7 @@
 
 ![Demo](demo/res/img/demo.gif)
 
-> `quicktap` in action (see [demo](https://marcoms.github.io/quicktap) on a mobile device or using mobile emulation in Chrome DevTools)
+> `quicktap` in action (see [demo](https://marcoms.github.io/quicktap/demo) on a mobile device or using mobile emulation in Chrome DevTools)
 
 ## Background
 

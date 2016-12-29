@@ -1,5 +1,7 @@
 # `quicktap`
 
+[![quicktap](https://img.shields.io/npm/v/quicktap.svg)](https://www.npmjs.com/package/quicktap)
+
 `quicktap` implements a class-based replacement for the `:active` pseudo-class that doesn't delay on mobile. Elements using `quicktap` should manifest a noticeable improvement in touch latency.
 
 View the [demo page](https://marcoms.github.io/quicktap/demo) on a mobile device, or watch a [video](https://marcoms.github.io/quicktap/demo/res/video/demo.webm) of the differences.

@@ -2,7 +2,7 @@
   "name": "quicktap",
   "version": "0.1.0",
   "description": "An :active replacement that doesn't delay on mobile",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcoms/quicktap.git"

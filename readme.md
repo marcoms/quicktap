@@ -65,11 +65,11 @@ quicktap.class = "radioactive";
 
 ### `quicktap.apply(elOrEls)`
 
-Returns all of the elements that have been successfully modified.
+Applies `quicktap` enhancements to `elOrEls`.
 
 `elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array`.
 
-Applies `quicktap` enhancements to `elOrEls`.
+Returns all of the elements that have been successfully modified.
 
 #### Examples
 

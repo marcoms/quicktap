@@ -41,7 +41,7 @@ body {
 }
 
 .demo.active,
-.demo:active {
+.demo:not(.qt):active {
     background: #eee;
 }
 
@@ -50,7 +50,7 @@ body {
 }
 
 .demo-animated.active,
-.demo-animated:active {
+.demo-animated:not(.qt):active {
     transition: none;
 }
 
@@ -72,11 +72,7 @@ body {
 }
 
 .demo-material.active,
-.demo-material:active {
+.demo-material:not(.qt):active {
     background: #64B5F6;
-}
-
-.demo-material.active,
-.demo-material:active {
     transform: scale(1.05);
 }

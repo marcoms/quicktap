@@ -1,6 +1,6 @@
 # `quicktap`
 
-`quicktap` implements a class-based replacement for the `:active` pseudo-class that doesn't delay on mobile. Elements using `quicktap` should manifest a noticeable improvement to latency.
+`quicktap` implements a class-based replacement for the `:active` pseudo-class that doesn't delay on mobile. Elements using `quicktap` should manifest a noticeable improvement in touch latency.
 
 View the [demo page](https://marcoms.github.io/quicktap/demo) on a mobile device, or watch a [video](https://marcoms.github.io/quicktap/demo/res/video/demo.webm) of the differences.
 
@@ -8,7 +8,7 @@ View the [demo page](https://marcoms.github.io/quicktap/demo) on a mobile device
 
 You may notice from the demo page how the regular take longer to respond to presses on the mobile device than the quicktap buttons.
 
-At this time, both Chrome and Firefox have a small delay between the `touchstart` event and actually adding the `:active` pseudoclass to the element. It is assumed that this is the case to prevent panning or scrolling from causing the `:active` selector to match and cause visual feedback. Unfortunately this sacrifices latency even when the user wants to tap on an element.
+At this time, both Chrome and Firefox have a small delay between the `touchstart` event and actually adding the `:active` pseudoclass to the element. It is assumed that this is the case to prevent panning or scrolling from causing the `:active` selector to match and cause visual feedback. Unfortunately this sacrifices touch latency even when the user wants to tap on an element.
 
 `quicktap` gets around this by listening for `touchstart` and `touchend` events (among others), and adding and removing a CSS class on an element accordingly. With these changes, it noticeably improves the user experience, since there is almost instant feedback from a user interaction.
 

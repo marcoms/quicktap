@@ -67,7 +67,7 @@ quicktap.class = "radioactive";
 
 Returns all of the elements that have been successfully modified.
 
-`elOrEls` may be one of `Element`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array`.
+`elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array`.
 
 Applies `quicktap` enhancements to `elOrEls`.
 

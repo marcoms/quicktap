@@ -31,7 +31,7 @@ const quicktap = {
 	apply(elOrEls) {
 		let els = [];
 
-		if (elOrEls instanceof Node) {
+		if (elOrEls instanceof HTMLElement) {
 			els.push(elOrEls);
 		} else if (typeof elOrEls === 'string') {
 			const matchingEls = document.querySelectorAll(elOrEls);

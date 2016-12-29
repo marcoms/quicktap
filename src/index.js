@@ -17,6 +17,7 @@ function deactivate(evt) {
 const touchEnabled = `ontouchstart` in window;
 
 let supportsPassive = false;
+
 try {
 	const opts = Object.defineProperty({}, `passive`, {
 		get() { supportsPassive = true; }
@@ -33,7 +34,7 @@ const quicktap = {
 
 		if (elOrEls instanceof HTMLElement) {
 			els.push(elOrEls);
-		} else if (typeof elOrEls === 'string') {
+		} else if (typeof elOrEls === `string`) {
 			const matchingEls = document.querySelectorAll(elOrEls);
 			if (matchingEls !== null) {
 				els = matchingEls;

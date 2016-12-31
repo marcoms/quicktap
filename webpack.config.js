@@ -15,6 +15,7 @@ module.exports = {
         path: `./dist`,
         library: `quicktap`,
         libraryTarget: `umd`,
+        umdNamedDefine: true,
     },
 
     module: {

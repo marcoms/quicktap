@@ -21,7 +21,7 @@ It is important to know that `quicktap` does not intefere with any `click` event
 Apply quicktap enhancements to your chosen element.
 
 ```js
-quicktap.apply(`#target-element`);
+quicktap(`#target-element`);
 ```
 
 Now, the element will have the `.active` class (or a unique one if you have changed `quicktap.class` yourself) when it is pressed.
@@ -39,6 +39,42 @@ Now, the element will have the `.active` class (or a unique one if you have chan
 ```
 
 ## API
+
+### `quicktap(elOrEls)`
+
+Applies `quicktap` enhancements to `elOrEls`.
+
+`elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array`.
+
+Returns all of the elements that have been successfully modified.
+
+#### Examples
+
+```js
+// single element
+
+const elementReference = document.querySelector(`#target-element`);
+quicktap(elementReference);
+
+// selector
+
+quicktap(`.selector`);
+
+// NodeList
+
+const elementReferences = document.querySelectorAll(`.selector`);
+quicktap(elementReferences);
+
+// array
+
+const elementArray = [
+	document.querySelector(`#a`),
+	document.querySelector(`#b`),
+	document.querySelector(`#c`),
+];
+
+quicktap(elementArray);
+```
 
 ### `quicktap.class`
 
@@ -61,42 +97,6 @@ quicktap.class = `radioactive`;
 	background: hotpink;
 	color: white;
 }
-```
-
-### `quicktap.apply(elOrEls)`
-
-Applies `quicktap` enhancements to `elOrEls`.
-
-`elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array`.
-
-Returns all of the elements that have been successfully modified.
-
-#### Examples
-
-```js
-// single element
-
-const elementReference = document.querySelector(`#target-element`);
-quicktap.apply(elementReference);
-
-// selector
-
-quicktap.apply(`.selector`);
-
-// NodeList
-
-const elementReferences = document.querySelectorAll(`.selector`);
-quicktap.apply(elementReferences);
-
-// array
-
-const elementArray = [
-	document.querySelector(`#a`),
-	document.querySelector(`#b`),
-	document.querySelector(`#c`),
-];
-
-quicktap.apply(elementArray);
 ```
 
 ## License

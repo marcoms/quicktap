@@ -40,11 +40,11 @@ Now, the element will have the `.active` class (or a unique one if you have chan
 
 ## API
 
-### `quicktap(elOrEls)`
+### `quicktap(elOrEls, className=(quicktap.class))`
 
-Applies `quicktap` enhancements to `elOrEls`.
+Applies `quicktap` enhancements to `elOrEls`. If `className` is provided, then that value will be used as the active class instead of `quicktap.class`.
 
-`elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array`.
+`elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array` (of `HTMLElement`s).
 
 Returns all of the elements that have been successfully modified.
 
@@ -74,13 +74,18 @@ const elementArray = [
 ];
 
 quicktap(elementArray);
+
+// unique class
+
+// #target-element's class will be .unique-class when pressed
+quicktap(`#target-element`, `unique-class`);
 ```
 
 ### `quicktap.class`
 
 Default: `'active'`
 
-String to use as the class name for elements which have been activated by a touch or mouse event.
+String to use as the default class name for elements which have been activated by a touch or mouse event.
 
 #### Example
 
@@ -96,6 +101,18 @@ quicktap.class = `radioactive`;
 .button.radioactive {
 	background: hotpink;
 	color: white;
+}
+```
+
+### `quicktap.version`
+
+Returns the version of `quicktap` with the following structure:
+
+```js
+{
+	major: <Number>,
+	minor: <Number>,
+	patch: <Number>,
 }
 ```
 

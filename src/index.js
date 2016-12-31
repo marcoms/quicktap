@@ -6,12 +6,16 @@ if (typeof window === `undefined`) {
 	throw new Error(`quicktap can only be used in the browser`);
 }
 
-function activate(evt) {
-	evt.currentTarget.classList.add(quicktap.class);
-}
+function makeActivateDeactivateFns(className) {
+	return {
+		activate(evt) {
+			evt.currentTarget.classList.add(className);
+		},
 
-function deactivate(evt) {
-	evt.currentTarget.classList.remove(quicktap.class);
+		deactivate(evt) {
+			evt.currentTarget.classList.remove(className);
+		},
+	};
 }
 
 const touchEnabled = `ontouchstart` in window;
@@ -26,7 +30,7 @@ try {
 	window.addEventListener(`x`, null, opts);
 } catch (err) {}
 
-function quicktap(elOrEls) {
+function quicktap(elOrEls, className) {
 	let els = [];
 
 	if (elOrEls instanceof HTMLElement) {
@@ -41,8 +45,16 @@ function quicktap(elOrEls) {
 	} else if (elOrEls instanceof Array) {
 		els = elOrEls;
 	} else {
-		throw new Error(`Must pass HTMLElement, string, NodeList, or Array`);
+		throw new Error(`Must pass HTMLElement, string, NodeList, or Array as first parameter`);
 	}
+
+	if (typeof className === `undefined`) {
+		className = quicktap.class;
+	} else if (typeof className !== `string`) {
+		throw new Error(`Must pass string as second parameter`);
+	}
+
+	const {activate, deactivate} = makeActivateDeactivateFns(className);
 
 	els = els.filter((el) => {
 		return el instanceof HTMLElement;

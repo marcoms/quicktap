@@ -52,6 +52,10 @@ const quicktap = {
 			throw new Error(`Must pass HTMLElement, string, NodeList, or Array`);
 		}
 
+		els = els.filter((el) => {
+			return el instanceof HTMLElement;
+		});
+
 		for (const el of els) {
 			if (supportsPassive) {
 				const opts = {passive: true};

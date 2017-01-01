@@ -6,17 +6,43 @@
 
 View the [demo page](https://marcoms.github.io/quicktap/demo) on a mobile device, or watch a [video](https://marcoms.github.io/quicktap/demo/res/video/demo.webm) of the differences.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Background](#background)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
+  - [`quicktap(elOrEls, className=quicktap.class)`](#quicktapelorels-classnamequicktapclass)
+  - [`quicktap.class`](#quicktapclass)
+  - [`quicktap.version`](#quicktapversion)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Background
 
 You may notice from the demo page how the regular take longer to respond to presses on the mobile device than the quicktap buttons.
 
-At this time, both Chrome and Firefox have a small delay between the `touchstart` event and actually adding the `:active` pseudoclass to the element. It is assumed that this is the case to prevent panning or scrolling from causing the `:active` selector to match and cause visual feedback. Unfortunately this sacrifices touch latency even when the user wants to tap on an element.
+Both Chrome and Firefox have a delay between the `touchstart` event and setting the `:active` pseudoclass. It is assumed that this is the case to prevent panning or scrolling from causing unintended visual feedback. Unfortunately this sacrifices touch latency even when the user wants to tap on an element.
 
-`quicktap` gets around this by listening for `touchstart` and `touchend` events (among others), and adding and removing a CSS class on an element accordingly. With these changes, it noticeably improves the user experience, since there is almost instant feedback from a user interaction.
+`quicktap` gets around this by listening for `touchstart` and `touchend` events (among others), and toggling an element's class accordingly. This noticeably improves the user experience, since there is almost instant feedback from a user interaction.
 
-It is important to know that `quicktap` does not intefere with any `click` events and so should not affect the browser's behaviour.
+## Installation
 
-## Using `quicktap`
+```bash
+$ npm install -S quicktap
+```
+
+## Usage
+
+```js
+const quicktap = require(`quicktap`);
+
+// or using ES modules
+import quicktap from 'quicktap';
+```
 
 Apply quicktap enhancements to your chosen element.
 
@@ -40,15 +66,15 @@ Now, the element will have the `.active` class (or a unique one if you have chan
 
 ## API
 
-### `quicktap(elOrEls, className=(quicktap.class))`
+### `quicktap(elOrEls, className=quicktap.class)`
 
-Applies `quicktap` enhancements to `elOrEls`. If `className` is provided, then that value will be used as the active class instead of `quicktap.class`.
+Applies `quicktap` enhancements to `elOrEls`. If `className` is provided, then that value will be used as the active class instead of `quicktap.class` for the element(s) provided.
 
 `elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array` (of `HTMLElement`s).
 
 Returns all of the elements that have been successfully modified.
 
-#### Examples
+#### Example
 
 ```js
 // single element
@@ -77,7 +103,7 @@ quicktap(elementArray);
 
 // unique class
 
-// #target-element's class will be .unique-class when pressed
+// #target-element will have the 'unique-class' class when pressed
 quicktap(`#target-element`, `unique-class`);
 ```
 
@@ -106,7 +132,7 @@ quicktap.class = `radioactive`;
 
 ### `quicktap.version`
 
-Returns the version of `quicktap` with the following structure:
+Returns an object specifying `quicktap`'s version with the following structure:
 
 ```js
 {

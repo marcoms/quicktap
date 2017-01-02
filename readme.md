@@ -113,13 +113,11 @@ quicktap(`#target-element`, {class: `unique-class`});
 // specified context
 
 const containerOfButtons = document.querySelector(`.buttons-container`);
-
 quicktap(`.button`, {context: containerOfButtons});
 
 // shadow DOM (after element has been templated)
 
 const hostElement = document.querySelector(`#shadow-host`);
-
 quicktap(`#shadow-button`, {context: hostElement.shadowRoot});
 ```
 

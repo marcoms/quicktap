@@ -45,13 +45,13 @@ function quicktap(elOrEls, className) {
 	} else if (elOrEls instanceof Array) {
 		els = elOrEls;
 	} else {
-		throw new Error(`Must pass HTMLElement, string, NodeList, or Array as first parameter`);
+		throw new Error(`First parameter must be one of HTMLElement, string, NodeList, or Array (got ${typeof elOrEls})`);
 	}
 
 	if (typeof className === `undefined`) {
 		className = quicktap.class;
 	} else if (typeof className !== `string`) {
-		throw new Error(`Must pass string as second parameter`);
+		throw new Error(`Second parameter must be string (got ${typeof elOrEls})`);
 	}
 
 	const {activate, deactivate} = makeActivateDeactivateFns(className);

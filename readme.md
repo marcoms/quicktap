@@ -71,8 +71,8 @@ Now, the element will have the `.active` class (or a unique one if you have chan
 Applies quicktap enhancements to `elOrEls`.
 
 `options` is an object with two optional properties:
-- `class` (`string`): string to use for active class name instead of `quicktap.class`
-- `context` (one of `Document`, `DocumentFragment`, `HTMLElement`): context to use if `elOrEls` is a selector string. Useful for shadow roots
+- `class` (`string`): string to use for active class name instead of `quicktap.class` (default: `quicktap.class`)
+- `context` (one of `Document`, `DocumentFragment`, `HTMLElement`): context to use if `elOrEls` is a selector string. Useful for shadow roots (default: `document`)
 
 `elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array` (of `HTMLElement`s).
 

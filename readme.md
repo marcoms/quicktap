@@ -1,8 +1,8 @@
-# `quicktap`
+# quicktap
 
 [![quicktap](https://img.shields.io/npm/v/quicktap.svg)](https://www.npmjs.com/package/quicktap)
 
-`quicktap` implements a class-based replacement for the `:active` pseudo-class that doesn't delay on mobile. Elements using `quicktap` should manifest a noticeable improvement in touch latency.
+quicktap implements a class-based replacement for the `:active` pseudo-class that doesn't delay on mobile. Elements using quicktap should manifest a noticeable improvement in touch latency.
 
 View the [demo page](https://marcoms.github.io/quicktap/demo) on a mobile device, or watch a [video](https://marcoms.github.io/quicktap/demo/res/video/demo.webm) of the differences.
 
@@ -14,7 +14,7 @@ View the [demo page](https://marcoms.github.io/quicktap/demo) on a mobile device
 - [Installation](#installation)
 - [Usage](#usage)
 - [API](#api)
-  - [`quicktap(elOrEls, className=quicktap.class)`](#quicktapelorels-classnamequicktapclass)
+  - [`quicktap(elOrEls, options={})`](#quicktapelorels-options)
   - [`quicktap.class`](#quicktapclass)
   - [`quicktap.version`](#quicktapversion)
 - [License](#license)
@@ -27,7 +27,7 @@ You may notice from the demo page how the regular take longer to respond to pres
 
 Both Chrome and Firefox have a delay between the `touchstart` event and setting the `:active` pseudoclass. It is assumed that this is the case to prevent panning or scrolling from causing unintended visual feedback. Unfortunately this sacrifices touch latency even when the user wants to tap on an element.
 
-`quicktap` gets around this by listening for `touchstart` and `touchend` events (among others), and toggling an element's class accordingly. This noticeably improves the user experience, since there is almost instant feedback from a user interaction.
+quicktap gets around this by listening for `touchstart` and `touchend` events (among others), and toggling an element's class accordingly. This noticeably improves the user experience, since there is almost instant feedback from a user interaction.
 
 ## Installation
 
@@ -66,9 +66,13 @@ Now, the element will have the `.active` class (or a unique one if you have chan
 
 ## API
 
-### `quicktap(elOrEls, className=quicktap.class)`
+### `quicktap(elOrEls, options={})`
 
-Applies `quicktap` enhancements to `elOrEls`. If `className` is provided, then that value will be used as the active class instead of `quicktap.class` for the element(s) provided.
+Applies quicktap enhancements to `elOrEls`.
+
+`options` is an object with two optional properties:
+- `class` (`string`): string to use for active class name instead of `quicktap.class`
+- `context` (one of `Document`, `DocumentFragment`, `HTMLElement`): context to use if `elOrEls` is a selector string. Useful for shadow roots
 
 `elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array` (of `HTMLElement`s).
 
@@ -104,7 +108,19 @@ quicktap(elementArray);
 // unique class
 
 // #target-element will have the 'unique-class' class when pressed
-quicktap(`#target-element`, `unique-class`);
+quicktap(`#target-element`, {class: `unique-class`});
+
+// specified context
+
+const containerOfButtons = document.querySelector(`.buttons-container`);
+
+quicktap(`.button`, {context: containerOfButtons});
+
+// shadow DOM (after element has been templated)
+
+const hostElement = document.querySelector(`#shadow-host`);
+
+quicktap(`#shadow-button`, {context: hostElement.shadowRoot});
 ```
 
 ### `quicktap.class`
@@ -132,7 +148,7 @@ quicktap.class = `radioactive`;
 
 ### `quicktap.version`
 
-Returns an object specifying `quicktap`'s version with the following structure:
+Returns an object specifying quicktap's version with the following structure:
 
 ```js
 {

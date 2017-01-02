@@ -30,13 +30,39 @@ try {
 	window.addEventListener(`x`, null, opts);
 } catch (err) {}
 
-function quicktap(elOrEls, className) {
+function quicktap(elOrEls, options={}) {
 	let els = [];
+
+	if (typeof options !== `object`) {
+		throw new Error(`options must be an object (got '${options}'`);
+	}
+
+	let className = options.class;
+
+	if (typeof className === `undefined`) {
+		className = quicktap.class;
+	} else if (typeof className !== `string`) {
+		throw new Error(`options.class must be string (got '${elOrEls}')`);
+	}
+
+	const {activate, deactivate} = makeActivateDeactivateFns(className);
+
+	let context = options.context;
+
+	if (typeof context === `undefined`) {
+		context = document;
+	} else if (
+		!(context instanceof Document)
+		&& !(context instanceof DocumentFragment)
+		&& !(context instanceof HTMLElement)
+	) {
+		throw new Error(`options.context must be one of Document, DocumentFrament, or HTMLElement (got '${context}')`);
+	}
 
 	if (elOrEls instanceof HTMLElement) {
 		els.push(elOrEls);
 	} else if (typeof elOrEls === `string`) {
-		const matchingEls = document.querySelectorAll(elOrEls);
+		const matchingEls = context.querySelectorAll(elOrEls);
 		if (matchingEls !== null) {
 			els = Array.from(matchingEls);
 		}
@@ -45,16 +71,8 @@ function quicktap(elOrEls, className) {
 	} else if (elOrEls instanceof Array) {
 		els = elOrEls;
 	} else {
-		throw new Error(`First parameter must be one of HTMLElement, string, NodeList, or Array (got ${typeof elOrEls})`);
+		throw new Error(`elOrEls must be one of HTMLElement, string, NodeList, or Array (got '${elOrEls}')`);
 	}
-
-	if (typeof className === `undefined`) {
-		className = quicktap.class;
-	} else if (typeof className !== `string`) {
-		throw new Error(`Second parameter must be string (got ${typeof elOrEls})`);
-	}
-
-	const {activate, deactivate} = makeActivateDeactivateFns(className);
 
 	els = els.filter((el) => {
 		return el instanceof HTMLElement;

@@ -4,7 +4,11 @@ export default {
     entry: `src/index.js`,
     format: `umd`,
     moduleName: `quicktap`,
-    dest: `dist/index.js`,
+    targets: [
+        {dest: `dist/index.js`, format: `umd`},
+        {dest: `dist/index.es.js`, format: `es`},
+    ],
+
     plugins: [
         json({preferConst: true}),
     ],

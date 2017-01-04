@@ -1,9 +1,3 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.quicktap = factory());
-}(this, (function () { 'use strict';
-
 const version = "3.2.0";
 
 // @preserve - quicktap by Marco Scannadinari, MIT licensed
@@ -122,6 +116,4 @@ quicktap.version = {
 	patch: Number.parseInt(versionPatch, 10),
 };
 
-return quicktap;
-
-})));
+export default quicktap;

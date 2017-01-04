@@ -1,3 +1,127 @@
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("quicktap",[],t):"object"==typeof exports?exports.quicktap=t():e.quicktap=t()}(this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=0)}([function(e,t,n){"use strict";function r(e){return{activate:function(t){t.currentTarget.classList.add(e)},deactivate:function(t){t.currentTarget.classList.remove(e)}}}function o(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=[];if("object"!=typeof t)throw new Error("options must be an object (got '"+t+"'");var s=t.class;if("undefined"==typeof s)s=o.class;else if("string"!=typeof s)throw new Error("options.class must be string (got '"+e+"')");var c=r(s),u=c.activate,f=c.deactivate,d=t.context;if("undefined"==typeof d)d=document;else if(!(d instanceof Document||d instanceof DocumentFragment||d instanceof HTMLElement))throw new Error("options.context must be one of Document, DocumentFrament, or HTMLElement (got '"+d+"')");if(e instanceof HTMLElement)n.push(e);else if("string"==typeof e){var l=d.querySelectorAll(e);null!==l&&(n=Array.from(l))}else if(e instanceof NodeList)n=Array.from(e);else{if(!(e instanceof Array))throw new Error("elOrEls must be one of HTMLElement, string, NodeList, or Array (got '"+e+"')");n=e}n=n.filter(function(e){return e instanceof HTMLElement});var v=!0,p=!1,m=void 0;try{for(var y,E=n[Symbol.iterator]();!(v=(y=E.next()).done);v=!0){var L=y.value;if(a){var h={passive:!0};L.addEventListener("mousedown",u,h),L.addEventListener("mouseup",f,h),L.addEventListener("mouseleave",f,h),i&&(L.addEventListener("touchstart",u,h),L.addEventListener("touchcancel",f,h),L.addEventListener("touchend",f,h))}else L.addEventListener("mousedown",u,!1),L.addEventListener("mouseup",f,!1),L.addEventListener("mouseleave",f,!1),i&&(L.addEventListener("touchstart",u,!1),L.addEventListener("touchcancel",f,!1),L.addEventListener("touchend",f,!1))}}catch(e){p=!0,m=e}finally{try{!v&&E.return&&E.return()}finally{if(p)throw m}}return n}
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.quicktap = factory());
+}(this, (function () { 'use strict';
+
+const version = "3.0.0";
+
 // @preserve - quicktap by Marco Scannadinari, MIT licensed
-if(Object.defineProperty(t,"__esModule",{value:!0}),"undefined"==typeof window)throw new Error("quicktap can only be used in the browser");var i="ontouchstart"in window,a=!1;try{var s=Object.defineProperty({},"passive",{get:function(){a=!0}});window.addEventListener("x",null,s)}catch(e){}o.class="active",o.version={major:3,minor:0,patch:0},t.default=o}])});
+
+const [versionMajor, versionMinor, versionPatch] = version.split(`.`);
+
+if (typeof window === `undefined`) {
+	throw new Error(`quicktap can only be used in the browser`);
+}
+
+function makeActivateDeactivateFns(className) {
+	return {
+		activate(evt) {
+			evt.currentTarget.classList.add(className);
+		},
+
+		deactivate(evt) {
+			evt.currentTarget.classList.remove(className);
+		},
+	};
+}
+
+const touchEnabled = `ontouchstart` in window;
+
+let supportsPassive = false;
+
+try {
+	const opts = Object.defineProperty({}, `passive`, {
+		get() { supportsPassive = true; }
+	});
+
+	window.addEventListener(`x`, null, opts);
+} catch (err) {}
+
+function quicktap(elOrEls, options={}) {
+	let els = [];
+
+	if (typeof options !== `object`) {
+		throw new Error(`options must be an object (got '${options}'`);
+	}
+
+	let className = options.class;
+
+	if (typeof className === `undefined`) {
+		className = quicktap.class;
+	} else if (typeof className !== `string`) {
+		throw new Error(`options.class must be string (got '${elOrEls}')`);
+	}
+
+	const {activate, deactivate} = makeActivateDeactivateFns(className);
+
+	let context = options.context;
+
+	if (typeof context === `undefined`) {
+		context = document;
+	} else if (
+		!(context instanceof Document)
+		&& !(context instanceof DocumentFragment)
+		&& !(context instanceof HTMLElement)
+	) {
+		throw new Error(`options.context must be one of Document, DocumentFrament, or HTMLElement (got '${context}')`);
+	}
+
+	if (elOrEls instanceof HTMLElement) {
+		els.push(elOrEls);
+	} else if (typeof elOrEls === `string`) {
+		const matchingEls = context.querySelectorAll(elOrEls);
+		if (matchingEls !== null) {
+			els = Array.from(matchingEls);
+		}
+	} else if (elOrEls instanceof NodeList) {
+		els = Array.from(elOrEls);
+	} else if (elOrEls instanceof Array) {
+		els = elOrEls;
+	} else {
+		throw new Error(`elOrEls must be one of HTMLElement, string, NodeList, or Array (got '${elOrEls}')`);
+	}
+
+	els = els.filter((el) => {
+		return el instanceof HTMLElement;
+	});
+
+	for (const el of els) {
+		if (supportsPassive) {
+			const opts = {passive: true};
+
+			el.addEventListener(`mousedown`, activate, opts);
+			el.addEventListener(`mouseup`, deactivate, opts);
+			el.addEventListener(`mouseleave`, deactivate, opts);
+
+			if (touchEnabled) {
+				el.addEventListener(`touchstart`, activate, opts);
+				el.addEventListener(`touchcancel`, deactivate, opts);
+				el.addEventListener(`touchend`, deactivate,  opts);
+			}
+		} else {
+			el.addEventListener(`mousedown`, activate, false);
+			el.addEventListener(`mouseup`, deactivate, false);
+			el.addEventListener(`mouseleave`, deactivate, false);
+
+			if (touchEnabled) {
+				el.addEventListener(`touchstart`, activate, false);
+				el.addEventListener(`touchcancel`, deactivate, false);
+				el.addEventListener(`touchend`, deactivate, false);
+			}
+		}
+	}
+
+	return els;
+}
+
+quicktap.class = `active`;
+quicktap.version = {
+	major: Number.parseInt(versionMajor, 10),
+	minor: Number.parseInt(versionMinor, 10),
+	patch: Number.parseInt(versionPatch, 10),
+};
+
+return quicktap;
+
+})));

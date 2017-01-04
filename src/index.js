@@ -2,6 +2,10 @@
 
 // @preserve - quicktap by Marco Scannadinari, MIT licensed
 
+import {version} from '../package.json';
+
+const [versionMajor, versionMinor, versionPatch] = version.split(`.`);
+
 if (typeof window === `undefined`) {
 	throw new Error(`quicktap can only be used in the browser`);
 }
@@ -109,9 +113,9 @@ function quicktap(elOrEls, options={}) {
 
 quicktap.class = `active`;
 quicktap.version = {
-	major: VERSION_MAJOR,
-	minor: VERSION_MINOR,
-	patch: VERSION_PATCH,
+	major: Number.parseInt(versionMajor, 10),
+	minor: Number.parseInt(versionMinor, 10),
+	patch: Number.parseInt(versionPatch, 10),
 };
 
 export default quicktap;

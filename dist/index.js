@@ -4,7 +4,7 @@
 	(global.quicktap = factory());
 }(this, (function () { 'use strict';
 
-const version = "3.1.0";
+const version = "3.1.1";
 
 // @preserve - quicktap by Marco Scannadinari, MIT licensed
 

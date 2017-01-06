@@ -1,4 +1,4 @@
-const version = "3.2.0";
+const version = "3.3.0";
 
 // @preserve - quicktap by Marco Scannadinari, MIT licensed
 

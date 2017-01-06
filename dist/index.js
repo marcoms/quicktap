@@ -4,7 +4,7 @@
 	(global.quicktap = factory());
 }(this, (function () { 'use strict';
 
-const version = "3.3.0";
+const version = "3.3.1";
 
 // @preserve - quicktap by Marco Scannadinari, MIT licensed
 
@@ -15,7 +15,7 @@ if (typeof window === `undefined`) {
 }
 
 function makeActivateDeactivateFns(className) {
-	// return functions that toggle the appropriate class
+	// produce functions that toggle the appropriate class
 
 	return {
 		activate(evt) {
@@ -81,6 +81,8 @@ function quicktap(elOrEls, options={}) {
 		throw new Error(`options.context must be one of Document, DocumentFrament, or HTMLElement (got '${context}')`);
 	}
 
+	let needsFilter = false;
+
 	if (elOrEls instanceof HTMLElement) {
 		els.push(elOrEls);
 	} else if (typeof elOrEls === `string`) {
@@ -92,14 +94,14 @@ function quicktap(elOrEls, options={}) {
 	} else if (elOrEls instanceof NodeList) {
 		els = Array.from(elOrEls);
 	} else if (elOrEls instanceof Array) {
-		els = elOrEls;
+		// can't guarantee all elements are HTMLElements
+
+		els = elOrEls.filter((el) => {
+			return el instanceof HTMLElement;
+		});
 	} else {
 		throw new Error(`elOrEls must be one of HTMLElement, string, NodeList, or Array (got '${elOrEls}')`);
 	}
-
-	els = els.filter((el) => {
-		return el instanceof HTMLElement;
-	});
 
 	for (const el of els) {
 		if (supportsPassive) {

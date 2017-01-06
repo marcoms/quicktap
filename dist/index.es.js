@@ -9,18 +9,31 @@ if (typeof window === `undefined`) {
 }
 
 function makeActivateDeactivateFns(className) {
+	// return functions that toggle the appropriate class
+
 	return {
 		activate(evt) {
-			evt.currentTarget.classList.add(className);
+			const el = evt.currentTarget;
+			const activateEvt = new CustomEvent(`activate`);
+
+			el.dispatchEvent(activateEvt);
+			el.classList.add(className);
 		},
 
 		deactivate(evt) {
-			evt.currentTarget.classList.remove(className);
+			const el = evt.currentTarget;
+			const deactivateEvt = new CustomEvent(`deactivate`);
+
+			el.dispatchEvent(deactivateEvt);
+			el.classList.remove(className);
 		},
 	};
 }
 
+// detect touch events support
 const touchEnabled = `ontouchstart` in window;
+
+// detect passive event listener support
 
 let supportsPassive = false;
 
@@ -39,6 +52,7 @@ function quicktap(elOrEls, options={}) {
 		throw new Error(`options must be an object (got '${options}'`);
 	}
 
+	// class is not a reserved property name but is a reserved identifier
 	let className = options.class;
 
 	if (typeof className === `undefined`) {
@@ -66,6 +80,7 @@ function quicktap(elOrEls, options={}) {
 	} else if (typeof elOrEls === `string`) {
 		const matchingEls = context.querySelectorAll(elOrEls);
 		if (matchingEls !== null) {
+			// NodeList -> Array
 			els = Array.from(matchingEls);
 		}
 	} else if (elOrEls instanceof NodeList) {

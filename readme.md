@@ -68,7 +68,7 @@ Now, the element will have the `.active` class (or a unique one if you have chan
 
 ### `quicktap(elOrEls, options={})`
 
-Applies quicktap enhancements to `elOrEls`.
+Applies quicktap enhancements to `elOrEls`. This will cause each targeted element to fire an `activate` event when pressed and a `deactivate` event when released.
 
 `options` is an object with two optional properties:
 - `class` (`string`): string to use for active class name instead of `quicktap.class` (default: `quicktap.class`)
@@ -85,6 +85,16 @@ Returns all of the elements that have been successfully modified.
 
 const elementReference = document.querySelector(`#target-element`);
 quicktap(elementReference);
+
+// events
+
+elementReference.addEventListener(`activate`, () => {
+    console.log(`element activated`);
+});
+
+elementReference.addEventListener(`deactivate`, () => {
+    console.log(`element deactivated`);
+});
 
 // selector
 

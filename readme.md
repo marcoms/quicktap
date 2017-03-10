@@ -15,7 +15,6 @@ View the [demo page](https://marcoms.github.io/quicktap/demo) on a mobile device
 - [Usage](#usage)
 - [API](#api)
   - [`quicktap(elOrEls, options={})`](#quicktapelorels-options)
-  - [`quicktap.class`](#quicktapclass)
   - [`quicktap.version`](#quicktapversion)
 - [License](#license)
 
@@ -50,7 +49,7 @@ Apply quicktap enhancements to your chosen element.
 quicktap(`#target-element`);
 ```
 
-Now, the element will have the `.active` class (or a unique one if you have changed `quicktap.class` yourself) when it is pressed.
+Now, the element will have the `.active` class when it is pressed.
 
 ```css
 #target-element {
@@ -71,7 +70,7 @@ Now, the element will have the `.active` class (or a unique one if you have chan
 Applies quicktap enhancements to `elOrEls`. This will cause each targeted element to fire an `activate` event when pressed and a `deactivate` event when released.
 
 `options` is an object with two optional properties:
-- `class` (`string`): string to use for active class name instead of `quicktap.class` (default: `quicktap.class`)
+- `class` (`string`): string to use for active class name instead of `'active'`
 - `context` (one of `Document`, `DocumentFragment`, `HTMLElement`): context to use if `elOrEls` is a selector string. Useful for shadow roots (default: `document`)
 
 `elOrEls` may be one of `HTMLElement`, `string` (selector), `NodeList` (returned by DOM methods such as `querySelector`, or `Array` (of `HTMLElement`s).
@@ -129,29 +128,6 @@ quicktap(`.button`, {context: containerOfButtons});
 
 const hostElement = document.querySelector(`#shadow-host`);
 quicktap(`#shadow-button`, {context: hostElement.shadowRoot});
-```
-
-### `quicktap.class`
-
-Default: `'active'`
-
-String to use as the default class name for elements which have been activated by a touch or mouse event.
-
-#### Example
-
-##### JS
-
-```js
-quicktap.class = `radioactive`;
-```
-
-##### CSS
-
-```css
-.button.radioactive {
-	background: hotpink;
-	color: white;
-}
 ```
 
 ### `quicktap.version`

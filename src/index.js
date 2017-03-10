@@ -4,6 +4,8 @@
 
 import {version} from '../package.json';
 
+const defaultActiveClass = `active`;
+
 const [versionMajor, versionMinor, versionPatch] = version.split(`.`);
 
 if (typeof window === `undefined`) {
@@ -58,7 +60,7 @@ function quicktap(elOrEls, options={}) {
 	let className = options.class;
 
 	if (typeof className === `undefined`) {
-		className = quicktap.class;
+		className = defaultActiveClass;
 	} else if (typeof className !== `string`) {
 		throw new Error(`options.class must be string (got '${elOrEls}')`);
 	}
@@ -128,7 +130,6 @@ function quicktap(elOrEls, options={}) {
 	return els;
 };
 
-quicktap.class = `active`;
 quicktap.version = {
 	major: Number.parseInt(versionMajor, 10),
 	minor: Number.parseInt(versionMinor, 10),

@@ -31,13 +31,17 @@ quicktap gets around this by listening for `touchstart` and `touchend` events (a
 ## Installation
 
 ```bash
+# using npm
 $ npm install -S quicktap
+
+# using yarn
+$ yarn add quicktap
 ```
 
 ## Usage
 
 ```js
-const quicktap = require(`quicktap`);
+const quicktap = require('quicktap');
 
 // or using ES modules
 import quicktap from 'quicktap';
@@ -46,7 +50,7 @@ import quicktap from 'quicktap';
 Apply quicktap enhancements to your chosen element.
 
 ```js
-quicktap(`#target-element`);
+quicktap('#target-element');
 ```
 
 Now, the element will have the `.active` class when it is pressed.
@@ -82,34 +86,34 @@ Returns all of the elements that have been successfully modified.
 ```js
 // single element
 
-const elementReference = document.querySelector(`#target-element`);
+const elementReference = document.querySelector('#target-element');
 quicktap(elementReference);
 
 // events
 
-elementReference.addEventListener(`activate`, () => {
-    console.log(`element activated`);
+elementReference.addEventListener('activate', () => {
+    console.log('element activated');
 });
 
-elementReference.addEventListener(`deactivate`, () => {
-    console.log(`element deactivated`);
+elementReference.addEventListener('deactivate', () => {
+    console.log('element deactivated');
 });
 
 // selector
 
-quicktap(`.selector`);
+quicktap('.selector');
 
 // NodeList
 
-const elementReferences = document.querySelectorAll(`.selector`);
+const elementReferences = document.querySelectorAll('.selector');
 quicktap(elementReferences);
 
 // array
 
 const elementArray = [
-	document.querySelector(`#a`),
-	document.querySelector(`#b`),
-	document.querySelector(`#c`),
+	document.querySelector('#a'),
+	document.querySelector('#b'),
+	document.querySelector('#c'),
 ];
 
 quicktap(elementArray);
@@ -117,17 +121,17 @@ quicktap(elementArray);
 // unique class
 
 // #target-element will have the 'unique-class' class when pressed
-quicktap(`#target-element`, {class: `unique-class`});
+quicktap('#target-element', {class: 'unique-class'});
 
 // specified context
 
-const containerOfButtons = document.querySelector(`.buttons-container`);
-quicktap(`.button`, {context: containerOfButtons});
+const containerOfButtons = document.querySelector('.buttons-container');
+quicktap('.button', {context: containerOfButtons});
 
 // shadow DOM (after element has been templated)
 
-const hostElement = document.querySelector(`#shadow-host`);
-quicktap(`#shadow-button`, {context: hostElement.shadowRoot});
+const hostElement = document.querySelector('#shadow-host');
+quicktap('#shadow-button', {context: hostElement.shadowRoot});
 ```
 
 ### `quicktap.version`
